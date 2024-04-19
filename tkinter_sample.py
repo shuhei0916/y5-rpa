@@ -19,7 +19,6 @@ def save_operations():
     s = text.get('1.0', tk.END) # WARNING: textはグローバル変数なので注意
     with open('./operation_sample.txt', mode='w') as f:
         f.write(s)
-    print(s)
     # TODO: 書き出しに成功したことを伝えるポップアップ画面を作る。
     messagebox.showinfo('save_operations success', '保存に成功しました！')
 
