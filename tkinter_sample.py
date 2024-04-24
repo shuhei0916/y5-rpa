@@ -1,5 +1,5 @@
 # 操作リストに基づいてマウスを動かす。
-# 操作リスト　-> op_listにする??
+# 操作リスト　-> op_listにする??or command_list?
 # tkinterのmainloopとシーケンサのフラグ（文字列が入力されたことをしらせるM100フラグ）を両立させるにはどうすればよいんだろう。
 
 
@@ -27,37 +27,50 @@ def reset_text():
     text.delete('0.0', tk.END)
 
 def execute_operations():
-    try:
-        with open('./operation_sample.txt', 'r') as f:
-            commands = f.readline()
-            for command in commands:
-                exec(command.strip()) # WARNING: exec関数の使用には注意が必要
-    except Exception as e:
-        # print("Error exectution operations: ", e)
-        messagebox.showinfo("Error exectution operations: ", e, commands)
+    messagebox.showinfo("command executed!!")
+    # try:
+    #     with open('./operation_sample.txt', 'r') as f:
+    #         commands = f.readline()
+    #         for command in commands:
+    #             exec(command.strip()) # WARNING: exec関数の使用には注意が必要
+    # except Exception as e:
+    #     # print("Error exectution operations: ", e)
+    #     messagebox.showinfo("Error exectution operations: ", e, commands)
+
 
 root = tk.Tk()
 root.title("Y5-OCR-RPA")
-# root.geometry("400x300")
+
+# フレームの作成とレイアウトの設定
+main_frame = tk.Frame(root)
+main_frame.pack(padx=10, pady=10)
 
 # マウス座標表示用Label
-pos_label = tk.Label(root)
+pos_label = tk.Label(main_frame)
 pos_label.pack()
 
+# EntryBoxxの作成
+command_entry = tk.Entry(main_frame)
+command_entry.pack()
+
 # 操作リスト表示用Text 
-text = tk.Text()
-text.pack()
+list_items = ['Item1', 'Item2', 'Item3']
+command_listbox = tk.Listbox(main_frame, height=5)
+for item in list_items:
+    command_listbox.insert(tk.END, item)
+command_listbox.pack()
 
 # 操作リストを書き出す用のボタン
-regis_button = tk.Button(text='書き出し', command=save_operations)
+regis_button = tk.Button(main_frame, text='書き出し', command=save_operations)
 regis_button.pack()
 
 # reset_button
-reset_button = tk.Button(text='リセット', command=reset_text)
+reset_button = tk.Button(main_frame, text='リセット', command=reset_text)
 reset_button.pack()
 
-root.bind('<e>', lambda event: execute_operations())
+main_frame.bind('<e>', lambda event: execute_operations())
 
 update_position()  # 座標更新関数を初めて呼び出します
 
 root.mainloop()
+
