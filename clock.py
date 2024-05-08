@@ -1,23 +1,20 @@
 import tkinter as tk
-import datetime
 import time
-import threading
-
-class Timer:
-    def __init__(self):
-        self.root = tk.Tk()
-        
-        self.label = tk.Label(self.root)
-        self.label["font"] = ('Helvetica', 50)
-        self.label.grid(column=0, row=0)
-        
-    def changeLabelText(self):
-        while True:
-            self.label["text"] = datetime.datetime.now().strftime("%d/%m/%d %H:%M:%S")
-            time.sleep(1)
-            
-if __name__ == "__main__":
-    timer = Timer()
-    thread = threading.Thread(target=timer.changeLabelText)
-    thread.start()
-    timer.root.mainloop()
+# Tkinterのウィンドウを作成
+root = tk.Tk()
+root.title("Clock")
+# 時計のラベルを作成
+clock = tk.Label(root, font=("times", 50, "bold"))
+clock.pack()
+# 時計を更新する関数
+def tick():
+# 現在の日時を取得
+    now = time.strftime("%H:%M:%S")
+    # ラベルのテキストを更新
+    clock.config(text=now)
+    # 1000msごとに再度tick関数を呼び出す
+    clock.after(1000, tick)
+    
+# 時計をスタート
+tick()
+root.mainloop()
