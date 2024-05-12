@@ -7,9 +7,9 @@
 # TODO: pyarmorによる難読化。stimerの設置。
 
 
-
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import ttk
 import pyautogui
 
 # マウス座標の更新を行う関数
@@ -44,12 +44,11 @@ def exe_command():
         messagebox.showinfo("Error exectution operations: ", e, commands)
 
 
-# ボタンの作成と機能の実装
 def add_command():
-    new_item = command_entry.get()
+    new_item = command_cbox.get()
     if new_item:
         command_list.append(new_item)
-        command_entry.delete(0, tk.END)
+        # command_cbox.delete(0, tk.END)
         command_listbox.insert(tk.END, new_item)
 
 def remove_command():
@@ -70,10 +69,15 @@ main_frame.pack(padx=10, pady=10)
 pos_label = tk.Label(main_frame)
 pos_label.pack()
 
+# Commandを選択するためのComboBox
+values = ['マウス移動', 'マウスクリック', '文字列入力']
+command_cbox = ttk.Combobox(main_frame, state="readonly", values=values)
+command_cbox.pack()
 
-# EntryBoxxの作成
-command_entry = tk.Entry(main_frame, width=30)
-command_entry.pack()
+
+# マウス座標設定用SpinBox TODO: y座標のぶんのspinboxも同様に定義し、配置を変える。
+s = tk.Spinbox(main_frame)
+s.pack()
 
 # ボタン用ウィジェット
 buttons = tk.Frame(main_frame)
@@ -94,8 +98,8 @@ buttons.pack()
 instruction_label = tk.Label(main_frame, text='Command List: ')
 instruction_label.pack()
 
-# command_list表示用Text 
-command_list = ['pyautogui.moveRel(100, 0)', 'pyautogui.moveRel(100, 100)', 'pyautogui.moveRel(-100, 0)']
+# command_list表示用Text TODO: リファクタリングの余地ありそう
+command_list = [] 
 command_listbox = tk.Listbox(main_frame, height=7, width=30)
 for item in command_list:
     command_listbox.insert(tk.END, item)
