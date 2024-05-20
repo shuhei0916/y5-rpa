@@ -22,7 +22,7 @@ def save_command_list():
     try: 
         with open(output_path, mode='w') as f:
             for command in command_list:
-                f.write(command + '\n')
+                    f.write(command + '\n')
         messagebox.showinfo('save_command_list success', f'保存に成功しました！\n保存先: {output_path}') # TODO: output_pathを絶対パスで表示する
     except Exception as e:
         messagebox.showerror('Error', f'コマンドリストの保存に失敗しました。\n{str(e)}')
@@ -32,28 +32,33 @@ def save_command_list():
 # TODO: テキストコマンド -> pyautoguiの関数への変換
 def exe_command():
     # messagebox.showinfo("command executed!!")
-    try:
+    try: # TODO: このtry-except文いる？（with openしてるから要らない気もする）
         with open('./command_list.txt', 'r') as f:
             commands = f.readlines()
-            # messagebox.showinfo('hehe', commands)
             for command in commands:
-                exec(command.strip()) # WARNING: exec関数の使用には注意が必要
-                if command == "マウス移動":
+                # command = command.strip() # 前後の空白除く
+                if "マウス移動" in command:
                     pyautogui.moveTo(100, 200) # 暫定的処理。引数を含める
-                elif command == "マウスクリック":
+                elif "マウスクリック" in command:
                     pyautogui.click()
-                elif command == "文字列入力":
-                    pyautogui.typewrite('Hello\nWorld!\n', 0.25) # シーケンサーからの入力をここに含める
+                elif "文字列入力" in command:pyautogui.typewrite('Hello\nWorld!\n', 0.25) # TODO: シーケンサーからの入力をここに含める
     except Exception as e:
         messagebox.showinfo("Error exectution commands: ", e)
 
-# TODO: 追加するコマンドがマウス移動の場合、目的の座標も含める
+# command_cboxからcommand_listboxにコマンドを追加
 def add_command():
     new_item = command_cbox.get()
     if new_item:
-        command_list.append(new_item)
-        command_listbox.insert(tk.END, new_item)
+        # マウス移動の場合は、目的地の座標も含める。
+        if new_item == 'マウス移動': # TODO: item -> commandに命名を変更する
+            item = new_item + '(' + x_spinbox.get() + ', ' + y_spinbox.get() + ')'
+            command_list.append(item)
+            command_listbox.insert(tk.END, item) 
+        else:
+            command_list.append(new_item)            
+            command_listbox.insert(tk.END, new_item)
 
+# command_listboxから選択したコマンドを削除
 def remove_command():
     selection = command_listbox.curselection() # selectionはタプルなので注意（複数選択している場合、タプルの要素数は複数になる。）
     if selection:
@@ -61,6 +66,7 @@ def remove_command():
         command_list.remove(selected_command) #WARNING: removeとdeleteの引数がそれぞれなんなのか、あんまり理解していないまま実装しているので注意
         command_listbox.delete(selection[0])
 
+# command_cboxの選択されたコマンドによって、spinboxのstateを変更
 def on_command_change(event):
     selected_command = command_cbox.get()
     if selected_command == 'マウス移動':
