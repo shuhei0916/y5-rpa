@@ -8,14 +8,23 @@ import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 import pyautogui
+import datetime
 
 # マウス座標の更新を行う関数
 def update_position():
     x, y = pyautogui.position()
-    coord_text = f'マウス座標(x, y): ({x}, {y})'
+    coord_text = f'(x: {x:>4}, y: {y:>4})'
     st_bar.config(text=coord_text)
     root.after(100, update_position)
 
+
+# シーケンサーの入力の更新を行う関数
+def update_plcinput():
+    plc_st = datetime.datetime.now() # # TODO: シーケンサーの入力に置き換え
+    plc_st_label.config(text=f'シーケンサ状態: {plc_st}')
+    root.after(100, update_plcinput)
+    
+    
 # 操作リストの出力を行う関数
 def save_command_list():
     output_path = './command_list.txt'
@@ -38,6 +47,7 @@ def exe_command():
             for command in commands:
                 # command = command.strip() # 前後の空白除く
                 if "マウス移動" in command:
+                    
                     pyautogui.moveTo(100, 200) # 暫定的処理。引数を含める
                 elif "マウスクリック" in command:
                     pyautogui.click()
@@ -135,11 +145,16 @@ regis_button.pack(pady=5)
 start_auto_button = tk.Button (main_frame, text='自動操作開始(削除予定)', command=exe_command)
 start_auto_button.pack()
 
+# シーケンサーの入力監視用ラベル
+plc_st_label = tk.Label(main_frame)
+plc_st_label.pack()
+update_plcinput()
+
 # st_bar（オプション引数についてはあんまりわかってないです）
 st_bar = tk.Label(root, bd=1, relief=tk.SUNKEN, anchor=tk.E)
 st_bar.pack(side=tk.BOTTOM, fill=tk.X)
-
 update_position()  # 座標更新関数を初めて呼び出す
+
 
 root.mainloop()
 
