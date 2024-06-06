@@ -1,8 +1,4 @@
-# 操作リストに基づいてマウスを動かす。
-# TODO: 自動操作開始後、escキーの入力でループを抜けるようにする
-# TODO: シーケンサーの入力を表示し、更新し続ける関数を作る。
 # TODO: pyarmorによる難読化。stimerの設置。
-
 
 import tkinter as tk
 from tkinter import messagebox
@@ -38,35 +34,34 @@ def save_command_list():
 
 # TODO: 実行中であることをしめすmessageboxを作る（メイン画面はその間とじる）
 # TODO: 無限ループにし、ESCで抜ける
-# TODO: テキストコマンド -> pyautoguiの関数への変換
 def exe_command():
     # messagebox.showinfo("command executed!!")
-    try: # TODO: このtry-except文いる？（with openしてるから要らない気もする）
-        with open('./command_list.txt', 'r') as f:
-            commands = f.readlines()
-            for command in commands:
-                # command = command.strip() # 前後の空白除く
-                if "マウス移動" in command:
-                    
-                    pyautogui.moveTo(100, 200) # 暫定的処理。引数を含める
-                elif "マウスクリック" in command:
-                    pyautogui.click()
-                elif "文字列入力" in command:pyautogui.typewrite('Hello\nWorld!\n', 0.25) # TODO: シーケンサーからの入力をここに含める
-    except Exception as e:
-        messagebox.showinfo("Error exectution commands: ", e)
+    with open('./command_list.txt', 'r') as f:
+        commands = f.readlines()
+        for command in commands:
+            command = command.strip() # NOTE: 不要かも？
+            if "マウス移動" in command:
+                # "マウス移動(x, y)" から引数を抽出
+                args = command[5:].strip("()").split(", ")
+                x, y = int(args[0]), int(args[1])
+                pyautogui.moveTo(x, y)
+            elif "マウスクリック" in command:
+                pyautogui.click()
+            elif "文字列入力" in command:
+                pyautogui.typewrite('Hello\nWorld!\n', 0.25) # TODO: シーケンサーからの入力をここに含める
 
-# command_cboxからcommand_listboxにコマンドを追加
+# drop_down_listからcommand_listboxにコマンドを追加
 def add_command():
-    new_item = command_cbox.get()
-    if new_item:
+    command = drop_down_list.get()
+    if command:
         # マウス移動の場合は、目的地の座標も含める。
-        if new_item == 'マウス移動': # TODO: item -> commandに命名を変更する
-            item = new_item + '(' + x_spinbox.get() + ', ' + y_spinbox.get() + ')'
+        if command == 'マウス移動':
+            item = command + '(' + x_spinbox.get() + ', ' + y_spinbox.get() + ')'
             command_list.append(item)
             command_listbox.insert(tk.END, item) 
         else:
-            command_list.append(new_item)            
-            command_listbox.insert(tk.END, new_item)
+            command_list.append(command)            
+            command_listbox.insert(tk.END, command)
 
 # command_listboxから選択したコマンドを削除
 def remove_command():
@@ -76,9 +71,9 @@ def remove_command():
         command_list.remove(selected_command) #WARNING: removeとdeleteの引数がそれぞれなんなのか、あんまり理解していないまま実装しているので注意
         command_listbox.delete(selection[0])
 
-# command_cboxの選択されたコマンドによって、spinboxのstateを変更
+# drop_down_listの選択されたコマンドによって、spinboxのstateを変更
 def on_command_change(event):
-    selected_command = command_cbox.get()
+    selected_command = drop_down_list.get()
     if selected_command == 'マウス移動':
         x_spinbox.config(state="normal")
         y_spinbox.config(state="normal")
@@ -100,9 +95,9 @@ command_panel = tk.Frame(main_frame)
 command_panel.pack()
 
 values = ['マウス移動', 'マウスクリック', '文字列入力']
-command_cbox = ttk.Combobox(command_panel, state="readonly", values=values)
-command_cbox.pack(side=tk.LEFT, padx=(0, 10))
-command_cbox.bind("<<ComboboxSelected>>", on_command_change) # ????
+drop_down_list = ttk.Combobox(command_panel, state="readonly", values=values)
+drop_down_list.pack(side=tk.LEFT, padx=(0, 10))
+drop_down_list.bind("<<ComboboxSelected>>", on_command_change) # ????
 
 spinboxes = tk.Frame(command_panel)
 spinboxes.pack(side=tk.RIGHT)
