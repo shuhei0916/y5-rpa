@@ -1,0 +1,5 @@
+# bin/ dist/を無視
+bint/
+dist/
+
+# docsは無視すべきかな？

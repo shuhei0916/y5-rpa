@@ -7,6 +7,9 @@ from tkinter import ttk
 import pyautogui
 import datetime
 import keyboard
+import logging
+
+logging.basicConfig(filename='rpa_app_log.txt', level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - %(message)s')
 
 
 # マウス座標の更新を行う関数
@@ -26,12 +29,14 @@ def update_plcinput():
     
 # 操作リストの出力を行う関数
 def save_command_list():
+    logging.debug('save_command_list started!')
     output_path = './command_list.txt'
     try: 
         with open(output_path, mode='w') as f:
             for command in command_list:
                     f.write(command + '\n')
         messagebox.showinfo('save_command_list success', f'保存に成功しました！\n保存先: {output_path}') # TODO: output_pathを絶対パスで表示する
+        logging.debug('save_command_list ended successfully!')
     except Exception as e:
         messagebox.showerror('Error', f'コマンドリストの保存に失敗しました。\n{str(e)}')
     
