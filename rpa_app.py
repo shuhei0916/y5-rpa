@@ -34,41 +34,10 @@ def save_command_list():
         messagebox.showinfo('save_command_list success', f'保存に成功しました！\n保存先: {output_path}') # TODO: output_pathを絶対パスで表示する
     except Exception as e:
         messagebox.showerror('Error', f'コマンドリストの保存に失敗しました。\n{str(e)}')
-
-# def execute_commands(execution_window):
-#     try:
-#         with open('./command_list.txt', 'r') as f:
-#             commands = f.readlines()
-#             for command in commands:
-#                 command = command.strip()
-#                 if "マウス移動" in command:
-#                     args = command[5:].strip("()").split(", ")
-#                     x, y = int(args[0]), int(args[1])
-#                     pyautogui.moveTo(x, y)
-#                 elif "マウスクリック" in command:
-#                     pyautogui.click()
-#                 elif "文字列入力" in command:
-#                     pyautogui.typewrite('Hello\nWorld!\n', 0.25)
-#                 if keyboard.is_pressed('esc'):
-#                     raise KeyboardInterrupt
-#         root.after(100, lambda: execute_commands(execution_window))  # 繰り返し実行するために再帰的に呼び出す
-#     except KeyboardInterrupt:
-#         execution_window.destroy()
-#         root.deiconify()
-
-# def exe_command():
-#     root.withdraw()  # メイン画面を一時的に閉じる
-#     execution_window = tk.Toplevel(root)
-#     execution_window.title("実行中")
-#     tk.Label(execution_window, text="コマンド実行中... ESCキー長押しで停止します。").pack(padx=20, pady=20)
-#     execution_window.geometry("300x100+20+900")# 画面左下に配置
-    
-#     root.after(100, lambda: execute_commands(execution_window))
-    
     
 # TODO: 実行中であることをしめすmessageboxを作る（メイン画面はその間とじる）
 def exe_command():
-    # messagebox.showinfo("command executed!!")
+    root.withdraw()
     with open('./command_list.txt', 'r') as f:
         commands = f.readlines()
         for command in commands:
@@ -77,11 +46,12 @@ def exe_command():
                 # "マウス移動(x, y)" から引数を抽出
                 args = command[5:].strip("()").split(", ")
                 x, y = int(args[0]), int(args[1])
-                pyautogui.moveTo(x, y)
+                pyautogui.moveTo(x, y, 0.5)
             elif "マウスクリック" in command:
                 pyautogui.click()
             elif "文字列入力" in command:
                 pyautogui.typewrite('Hello\nWorld!\n', 0.25) # TODO: シーケンサーからの入力をここに含める
+    root.deiconify()
 
 # drop_down_listからcommand_listboxにコマンドを追加
 def add_command():
@@ -185,4 +155,3 @@ update_position()  # 座標更新関数を初めて呼び出す
 
 
 root.mainloop()
-
