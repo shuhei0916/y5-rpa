@@ -35,54 +35,53 @@ def save_command_list():
     except Exception as e:
         messagebox.showerror('Error', f'コマンドリストの保存に失敗しました。\n{str(e)}')
 
-def execute_commands(execution_window):
-    try:
-        with open('./command_list.txt', 'r') as f:
-            commands = f.readlines()
-            for command in commands:
-                command = command.strip()
-                if "マウス移動" in command:
-                    args = command[5:].strip("()").split(", ")
-                    x, y = int(args[0]), int(args[1])
-                    pyautogui.moveTo(x, y)
-                elif "マウスクリック" in command:
-                    pyautogui.click()
-                elif "文字列入力" in command:
-                    pyautogui.typewrite('Hello\nWorld!\n', 0.25)
-                if keyboard.is_pressed('esc'):
-                    raise KeyboardInterrupt
-        root.after(100, lambda: execute_commands(execution_window))  # 繰り返し実行するために再帰的に呼び出す
-    except KeyboardInterrupt:
-        execution_window.destroy()
-        root.deiconify()
+# def execute_commands(execution_window):
+#     try:
+#         with open('./command_list.txt', 'r') as f:
+#             commands = f.readlines()
+#             for command in commands:
+#                 command = command.strip()
+#                 if "マウス移動" in command:
+#                     args = command[5:].strip("()").split(", ")
+#                     x, y = int(args[0]), int(args[1])
+#                     pyautogui.moveTo(x, y)
+#                 elif "マウスクリック" in command:
+#                     pyautogui.click()
+#                 elif "文字列入力" in command:
+#                     pyautogui.typewrite('Hello\nWorld!\n', 0.25)
+#                 if keyboard.is_pressed('esc'):
+#                     raise KeyboardInterrupt
+#         root.after(100, lambda: execute_commands(execution_window))  # 繰り返し実行するために再帰的に呼び出す
+#     except KeyboardInterrupt:
+#         execution_window.destroy()
+#         root.deiconify()
 
-def exe_command():
-    root.withdraw()  # メイン画面を一時的に閉じる
-    execution_window = tk.Toplevel(root)
-    execution_window.title("実行中")
-    tk.Label(execution_window, text="コマンド実行中... ESCキー長押しで停止します。").pack(padx=20, pady=20)
-    execution_window.geometry("300x100+20+900")# 画面左下に配置
+# def exe_command():
+#     root.withdraw()  # メイン画面を一時的に閉じる
+#     execution_window = tk.Toplevel(root)
+#     execution_window.title("実行中")
+#     tk.Label(execution_window, text="コマンド実行中... ESCキー長押しで停止します。").pack(padx=20, pady=20)
+#     execution_window.geometry("300x100+20+900")# 画面左下に配置
     
-    root.after(100, lambda: execute_commands(execution_window))
+#     root.after(100, lambda: execute_commands(execution_window))
     
     
 # TODO: 実行中であることをしめすmessageboxを作る（メイン画面はその間とじる）
-# TODO: 無限ループにし、ESCで抜ける
-# def exe_command():
-#     # messagebox.showinfo("command executed!!")
-#     with open('./command_list.txt', 'r') as f:
-#         commands = f.readlines()He
-#         for command in commands:
-#             command = command.strip() # NOTE: 不要かも？
-#             if "マウス移動" in command:
-#                 # "マウス移動(x, y)" から引数を抽出
-#                 args = command[5:].strip("()").split(", ")
-#                 x, y = int(args[0]), int(args[1])
-#                 pyautogui.moveTo(x, y)
-#             elif "マウスクリック" in command:
-#                 pyautogui.click()
-#             elif "文字列入力" in command:
-#                 pyautogui.typewrite('Hello\nWorld!\n', 0.25) # TODO: シーケンサーからの入力をここに含める
+def exe_command():
+    # messagebox.showinfo("command executed!!")
+    with open('./command_list.txt', 'r') as f:
+        commands = f.readlines()
+        for command in commands:
+            command = command.strip() # NOTE: 不要かも？
+            if "マウス移動" in command:
+                # "マウス移動(x, y)" から引数を抽出
+                args = command[5:].strip("()").split(", ")
+                x, y = int(args[0]), int(args[1])
+                pyautogui.moveTo(x, y)
+            elif "マウスクリック" in command:
+                pyautogui.click()
+            elif "文字列入力" in command:
+                pyautogui.typewrite('Hello\nWorld!\n', 0.25) # TODO: シーケンサーからの入力をここに含める
 
 # drop_down_listからcommand_listboxにコマンドを追加
 def add_command():
