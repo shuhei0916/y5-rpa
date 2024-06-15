@@ -6,10 +6,17 @@ from tkinter import messagebox, ttk
 import pyautogui
 
 # from MCTest import readData, writeData
+from common import *
 
 logging.basicConfig(filename='log_rpa_app.txt', level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - %(message)s', filemode='w')
 # logging.disable(logging.CRITICAL)
 
+def check_consistency():
+    try:
+        check_expiration()
+    except:
+        messagebox.showerror("Error", error_message)
+        exit(1)
 
 def update_cursor_position():
     x, y = pyautogui.position()
@@ -18,6 +25,7 @@ def update_cursor_position():
     root.after(100, update_cursor_position)
 
 def update_plc_input():
+    # plc_st, frame_num = readDate()
     plc_st = datetime.datetime.now() # TODO: シーケンサーの入力に置き換え
     plc_st_label.config(text=f'シーケンサ状態: {plc_st}')
     root.after(100, update_plc_input)
@@ -36,11 +44,12 @@ def save_command_list():
         logging.error('save_command_list failed.')
     
 def exe_command():
+    check_consistency()
     root.withdraw()
     with open('./command_list.txt', 'r') as f:
         commands = f.readlines()
         for command in commands:
-            # command = command.strip()
+            command = command.strip()
             if "マウス移動" in command:
                 args = command[5:].strip("()").split(", ") # "マウス移動(x, y)" から引数を抽出
                 x, y = int(args[0]), int(args[1])
@@ -48,6 +57,7 @@ def exe_command():
             elif "マウスクリック" in command:
                 pyautogui.click()
             elif "文字列入力" in command:
+                # frame_num ==  # strip系の処理する必要あり。
                 pyautogui.typewrite('Hello\nWorld!\n', 0.25) # TODO: シーケンサーからの入力をここに含める
     root.deiconify()
 
@@ -136,6 +146,8 @@ regis_button.pack(pady=5)
 # 自動操作開始ボタン(eキーだとうまくいかないので、ボタンで暫定的処理。最終的にはシーケンサの信号に置き換える予定)
 start_auto_button = tk.Button (main_frame, text='自動操作開始(削除予定)', command=exe_command)
 start_auto_button.pack()
+# if plc_st == 1:
+#     exe_command()
 
 # シーケンサーの入力監視用ラベル
 plc_st_label = tk.Label(main_frame)
