@@ -6,7 +6,7 @@ import datetime
 import logging
 
 logging.basicConfig(filename='rpa_app_log.txt', level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - %(message)s')
-
+# logging.disable(logging.CRITICAL)
 
 def update_cursor_position():
     x, y = pyautogui.position()
@@ -15,7 +15,7 @@ def update_cursor_position():
     root.after(100, update_cursor_position)
 
 def update_plc_input():
-    plc_st = datetime.datetime.now() # # TODO: シーケンサーの入力に置き換え
+    plc_st = datetime.datetime.now() # TODO: シーケンサーの入力に置き換え
     plc_st_label.config(text=f'シーケンサ状態: {plc_st}')
     root.after(100, update_plc_input)
     
@@ -36,7 +36,7 @@ def exe_command():
     with open('./command_list.txt', 'r') as f:
         commands = f.readlines()
         for command in commands:
-            command = command.strip() # NOTE: 不要かも？
+            # command = command.strip()
             if "マウス移動" in command:
                 args = command[5:].strip("()").split(", ") # "マウス移動(x, y)" から引数を抽出
                 x, y = int(args[0]), int(args[1])
@@ -50,17 +50,23 @@ def exe_command():
 def add_command():
     command = drop_down_list.get()
     if command:
-        if command == 'マウス移動': # マウス移動の場合は、目的地の座標も含める。
-            item = command + '(' + x_spinbox.get() + ', ' + y_spinbox.get() + ')'
-            command_list.append(item)
-            command_listbox.insert(tk.END, item) 
+        if command == 'マウス移動':
+            item = f"{command}({x_spinbox.get()}, {y_spinbox.get()})"
         else:
-            command_list.append(command)            
-            command_listbox.insert(tk.END, command)
+            item = command
+        command_list.append(item)
+        command_listbox.insert(tk.END, item)
+            
+        # if command == 'マウス移動': # マウス移動の場合は、目的地の座標も含める。
+        #     item = command + '(' + x_spinbox.get() + ', ' + y_spinbox.get() + ')'
+        #     command_list.append(item)
+        #     command_listbox.insert(tk.END, item) 
+        # else:
+        #     command_list.append(command)            
+        #     command_listbox.insert(tk.END, command)
 
-# command_listboxから選択したコマンドを削除
 def remove_command():
-    selection = command_listbox.curselection() # selectionはタプルなので注意（複数選択している場合、タプルの要素数は複数になる。）
+    selection = command_listbox.curselection() # NOTE: selectionはタプルなので注意（複数選択している場合、タプルの要素数は複数になる。）
     if selection:
         selected_command = command_list[selection[0]]
         command_list.remove(selected_command) #WARNING: removeとdeleteの引数がそれぞれなんなのか、あんまり理解していないまま実装しているので注意
