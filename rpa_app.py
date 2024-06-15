@@ -1,33 +1,24 @@
-# TODO: pyarmor。stimerの設置。
-
-
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 import pyautogui
 import datetime
-import keyboard
 import logging
 
 logging.basicConfig(filename='rpa_app_log.txt', level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - %(message)s')
 
 
-# マウス座標の更新を行う関数
-def update_position():
+def update_cursor_position():
     x, y = pyautogui.position()
     coord_text = f'(x: {x:>4}, y: {y:>4})'
     st_bar.config(text=coord_text)
-    root.after(100, update_position)
+    root.after(100, update_cursor_position)
 
-
-# シーケンサーの入力の更新を行う関数
-def update_plcinput():
+def update_plc_input():
     plc_st = datetime.datetime.now() # # TODO: シーケンサーの入力に置き換え
     plc_st_label.config(text=f'シーケンサ状態: {plc_st}')
-    root.after(100, update_plcinput)
+    root.after(100, update_plc_input)
     
-    
-# 操作リストの出力を行う関数
 def save_command_list():
     logging.debug('save_command_list started!')
     output_path = './command_list.txt'
@@ -40,7 +31,6 @@ def save_command_list():
     except Exception as e:
         messagebox.showerror('Error', f'コマンドリストの保存に失敗しました。\n{str(e)}')
     
-# TODO: 実行中であることをしめすmessageboxを作る（メイン画面はその間とじる）
 def exe_command():
     root.withdraw()
     with open('./command_list.txt', 'r') as f:
@@ -48,8 +38,7 @@ def exe_command():
         for command in commands:
             command = command.strip() # NOTE: 不要かも？
             if "マウス移動" in command:
-                # "マウス移動(x, y)" から引数を抽出
-                args = command[5:].strip("()").split(", ")
+                args = command[5:].strip("()").split(", ") # "マウス移動(x, y)" から引数を抽出
                 x, y = int(args[0]), int(args[1])
                 pyautogui.moveTo(x, y, 0.5)
             elif "マウスクリック" in command:
@@ -58,12 +47,10 @@ def exe_command():
                 pyautogui.typewrite('Hello\nWorld!\n', 0.25) # TODO: シーケンサーからの入力をここに含める
     root.deiconify()
 
-# drop_down_listからcommand_listboxにコマンドを追加
 def add_command():
     command = drop_down_list.get()
     if command:
-        # マウス移動の場合は、目的地の座標も含める。
-        if command == 'マウス移動':
+        if command == 'マウス移動': # マウス移動の場合は、目的地の座標も含める。
             item = command + '(' + x_spinbox.get() + ', ' + y_spinbox.get() + ')'
             command_list.append(item)
             command_listbox.insert(tk.END, item) 
@@ -151,12 +138,12 @@ start_auto_button.pack()
 # シーケンサーの入力監視用ラベル
 plc_st_label = tk.Label(main_frame)
 plc_st_label.pack()
-update_plcinput()
+update_plc_input()
 
 # st_bar（オプション引数についてはあんまりわかってないです）
 st_bar = tk.Label(root, bd=1, relief=tk.SUNKEN, anchor=tk.E)
 st_bar.pack(side=tk.BOTTOM, fill=tk.X)
-update_position()  # 座標更新関数を初めて呼び出す
+update_cursor_position()  # 座標更新関数を初めて呼び出す
 
 
 root.mainloop()
