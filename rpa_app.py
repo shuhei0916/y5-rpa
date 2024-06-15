@@ -7,7 +7,7 @@ import pyautogui
 
 # from MCTest import readData, writeData
 
-logging.basicConfig(filename='rpa_app_log.txt', level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - %(message)s', filemode='w')
+logging.basicConfig(filename='log_rpa_app.txt', level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - %(message)s', filemode='w')
 # logging.disable(logging.CRITICAL)
 
 

@@ -1,4 +1,0 @@
- 2024-06-15 15:11:20,608 - DEBUG - mainloop 1
- 2024-06-15 15:11:25,500 - DEBUG - save_command_list started!
- 2024-06-15 15:11:26,408 - DEBUG - save_command_list ended successfully!
- 2024-06-15 15:11:27,617 - DEBUG - mainloop 2
