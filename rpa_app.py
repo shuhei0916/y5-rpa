@@ -1,12 +1,15 @@
-import tkinter as tk
-from tkinter import messagebox
-from tkinter import ttk
-import pyautogui
 import datetime
 import logging
+import tkinter as tk
+from tkinter import messagebox, ttk
 
-logging.basicConfig(filename='rpa_app_log.txt', level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - %(message)s')
+import pyautogui
+
+# from MCTest import readData, writeData
+
+logging.basicConfig(filename='rpa_app_log.txt', level=logging.DEBUG, format=' %(asctime)s - %(levelname)s - %(message)s', filemode='w')
 # logging.disable(logging.CRITICAL)
+
 
 def update_cursor_position():
     x, y = pyautogui.position()
@@ -25,11 +28,12 @@ def save_command_list():
     try: 
         with open(output_path, mode='w') as f:
             for command in command_list:
-                    f.write(command + '\n')
+                f.write(command + '\n')
         messagebox.showinfo('save_command_list success', f'保存に成功しました！\n保存先: {output_path}') # TODO: output_pathを絶対パスで表示する
         logging.debug('save_command_list ended successfully!')
     except Exception as e:
         messagebox.showerror('Error', f'コマンドリストの保存に失敗しました。\n{str(e)}')
+        logging.error('save_command_list failed.')
     
 def exe_command():
     root.withdraw()
@@ -56,14 +60,6 @@ def add_command():
             item = command
         command_list.append(item)
         command_listbox.insert(tk.END, item)
-            
-        # if command == 'マウス移動': # マウス移動の場合は、目的地の座標も含める。
-        #     item = command + '(' + x_spinbox.get() + ', ' + y_spinbox.get() + ')'
-        #     command_list.append(item)
-        #     command_listbox.insert(tk.END, item) 
-        # else:
-        #     command_list.append(command)            
-        #     command_listbox.insert(tk.END, command)
 
 def remove_command():
     selection = command_listbox.curselection() # NOTE: selectionはタプルなので注意（複数選択している場合、タプルの要素数は複数になる。）
@@ -152,4 +148,6 @@ st_bar.pack(side=tk.BOTTOM, fill=tk.X)
 update_cursor_position()  # 座標更新関数を初めて呼び出す
 
 
+logging.debug("mainloop 1")
 root.mainloop()
+logging.debug("mainloop 2")
