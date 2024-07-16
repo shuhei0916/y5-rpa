@@ -7,11 +7,11 @@
       "RelativeMoniker": "D:0:0:{76FC802D-231E-4F3B-8AC9-44D0C7F026B4}|WindowsFormsAppRPA\\WindowsFormsAppRPA.csproj|solutionrelative:windowsformsapprpa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76FC802D-231E-4F3B-8AC9-44D0C7F026B4}|WindowsFormsAppRPA\\WindowsFormsAppRPA.csproj|c:\\users\\ito\\projects\\y5-rpa\\c-sharp\\rpa-windowsformsapp\\windowsformsapprpa\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{76FC802D-231E-4F3B-8AC9-44D0C7F026B4}|WindowsFormsAppRPA\\WindowsFormsAppRPA.csproj|C:\\Users\\Ito\\projects\\y5-rpa\\c-sharp\\RPA-WIndowsFormsApp\\windowsformsapprpa\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{76FC802D-231E-4F3B-8AC9-44D0C7F026B4}|WindowsFormsAppRPA\\WindowsFormsAppRPA.csproj|solutionrelative:windowsformsapprpa\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76FC802D-231E-4F3B-8AC9-44D0C7F026B4}|WindowsFormsAppRPA\\WindowsFormsAppRPA.csproj|c:\\users\\ito\\projects\\y5-rpa\\c-sharp\\rpa-windowsformsapp\\windowsformsapprpa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{76FC802D-231E-4F3B-8AC9-44D0C7F026B4}|WindowsFormsAppRPA\\WindowsFormsAppRPA.csproj|C:\\Users\\Ito\\projects\\y5-rpa\\c-sharp\\RPA-WIndowsFormsApp\\windowsformsapprpa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{76FC802D-231E-4F3B-8AC9-44D0C7F026B4}|WindowsFormsAppRPA\\WindowsFormsAppRPA.csproj|solutionrelative:windowsformsapprpa\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -27,15 +27,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Form1.cs [\u30C7\u30B6\u30A4\u30F3]",
+              "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Ito\\projects\\y5-rpa\\c-sharp\\RPA-WIndowsFormsApp\\WindowsFormsAppRPA\\Form1.cs",
               "RelativeDocumentMoniker": "WindowsFormsAppRPA\\Form1.cs",
-              "ToolTip": "C:\\Users\\Ito\\projects\\y5-rpa\\c-sharp\\RPA-WIndowsFormsApp\\WindowsFormsAppRPA\\Form1.cs [\u30C7\u30B6\u30A4\u30F3]",
-              "RelativeToolTip": "WindowsFormsAppRPA\\Form1.cs [\u30C7\u30B6\u30A4\u30F3]",
+              "ToolTip": "C:\\Users\\Ito\\projects\\y5-rpa\\c-sharp\\RPA-WIndowsFormsApp\\WindowsFormsAppRPA\\Form1.cs [Design]",
+              "RelativeToolTip": "WindowsFormsAppRPA\\Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T08:29:53.985Z",
               "IsPinned": true,
-              "EditorCaption": " [\u30C7\u30B6\u30A4\u30F3]"
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Bookmark",
@@ -49,7 +49,7 @@
               "RelativeDocumentMoniker": "WindowsFormsAppRPA\\Form1.cs",
               "ToolTip": "C:\\Users\\Ito\\projects\\y5-rpa\\c-sharp\\RPA-WIndowsFormsApp\\WindowsFormsAppRPA\\Form1.cs",
               "RelativeToolTip": "WindowsFormsAppRPA\\Form1.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAAAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAA0wBoAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T08:32:35.806Z",
               "EditorCaption": ""
@@ -64,8 +64,7 @@
               "RelativeToolTip": "WindowsFormsAppRPA\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-16T08:30:25.297Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-16T08:30:25.297Z"
             }
           ]
         }

@@ -1,9 +1,0 @@
-C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\RPA-WIndowsFormsApp\bin\Debug\RPA-WIndowsFormsApp.exe
-C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\RPA-WIndowsFormsApp\bin\Debug\RPA-WIndowsFormsApp.pdb
-C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\RPA-WIndowsFormsApp\obj\Debug\RPA-WIndowsFormsApp.csproj.AssemblyReference.cache
-C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\RPA-WIndowsFormsApp\obj\Debug\RPA_WIndowsFormsApp.Form1.resources
-C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\RPA-WIndowsFormsApp\obj\Debug\RPA_WIndowsFormsApp.Properties.Resources.resources
-C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\RPA-WIndowsFormsApp\obj\Debug\RPA-WIndowsFormsApp.csproj.GenerateResource.cache
-C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\RPA-WIndowsFormsApp\obj\Debug\RPA-WIndowsFormsApp.csproj.CoreCompileInputs.cache
-C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\RPA-WIndowsFormsApp\obj\Debug\RPA-WIndowsFormsApp.exe
-C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\RPA-WIndowsFormsApp\obj\Debug\RPA-WIndowsFormsApp.pdb
