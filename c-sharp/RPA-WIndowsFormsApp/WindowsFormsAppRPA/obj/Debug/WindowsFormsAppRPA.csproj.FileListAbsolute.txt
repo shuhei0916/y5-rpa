@@ -1,0 +1,9 @@
+C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\WindowsFormsAppRPA\bin\Debug\WindowsFormsAppRPA.exe
+C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\WindowsFormsAppRPA\bin\Debug\WindowsFormsAppRPA.pdb
+C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\WindowsFormsAppRPA\obj\Debug\WindowsFormsAppRPA.csproj.AssemblyReference.cache
+C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\WindowsFormsAppRPA\obj\Debug\WindowsFormsAppRPA.Form1.resources
+C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\WindowsFormsAppRPA\obj\Debug\WindowsFormsAppRPA.Properties.Resources.resources
+C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\WindowsFormsAppRPA\obj\Debug\WindowsFormsAppRPA.csproj.GenerateResource.cache
+C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\WindowsFormsAppRPA\obj\Debug\WindowsFormsAppRPA.csproj.CoreCompileInputs.cache
+C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\WindowsFormsAppRPA\obj\Debug\WindowsFormsAppRPA.exe
+C:\Users\Ito\projects\y5-rpa\c-sharp\RPA-WIndowsFormsApp\WindowsFormsAppRPA\obj\Debug\WindowsFormsAppRPA.pdb
