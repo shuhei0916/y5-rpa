@@ -2,4 +2,5 @@
 bint/
 dist/
 
-# docsは無視すべきかな？
+# docsは無視
+64bit/docs
