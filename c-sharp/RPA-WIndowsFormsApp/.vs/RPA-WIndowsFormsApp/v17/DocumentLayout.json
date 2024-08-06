@@ -27,15 +27,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Form1.cs [Design]",
+              "Title": "Form1.cs [\u30C7\u30B6\u30A4\u30F3]",
               "DocumentMoniker": "C:\\Users\\Ito\\projects\\y5-rpa\\c-sharp\\RPA-WIndowsFormsApp\\WindowsFormsAppRPA\\Form1.cs",
               "RelativeDocumentMoniker": "WindowsFormsAppRPA\\Form1.cs",
-              "ToolTip": "C:\\Users\\Ito\\projects\\y5-rpa\\c-sharp\\RPA-WIndowsFormsApp\\WindowsFormsAppRPA\\Form1.cs [Design]",
-              "RelativeToolTip": "WindowsFormsAppRPA\\Form1.cs [Design]",
+              "ToolTip": "C:\\Users\\Ito\\projects\\y5-rpa\\c-sharp\\RPA-WIndowsFormsApp\\WindowsFormsAppRPA\\Form1.cs [\u30C7\u30B6\u30A4\u30F3]",
+              "RelativeToolTip": "WindowsFormsAppRPA\\Form1.cs [\u30C7\u30B6\u30A4\u30F3]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T08:29:53.985Z",
               "IsPinned": true,
-              "EditorCaption": " [Design]"
+              "EditorCaption": " [\u30C7\u30B6\u30A4\u30F3]"
             },
             {
               "$type": "Bookmark",
@@ -49,7 +49,7 @@
               "RelativeDocumentMoniker": "WindowsFormsAppRPA\\Form1.cs",
               "ToolTip": "C:\\Users\\Ito\\projects\\y5-rpa\\c-sharp\\RPA-WIndowsFormsApp\\WindowsFormsAppRPA\\Form1.cs",
               "RelativeToolTip": "WindowsFormsAppRPA\\Form1.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAA0wBoAAAAFAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABoAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T08:32:35.806Z",
               "EditorCaption": ""
