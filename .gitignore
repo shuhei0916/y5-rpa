@@ -2,8 +2,16 @@
 bint/
 dist/
 
-# docsは無視
+#64bit/
+64bit/build
+64bit/dist
 64bit/docs
+64bit/pyarmor_runtime_000000
+64bit/sample_files/build
+
+# 32bit/
+32bit/build
+32bit/dist
 
 # Executables
 *.exe
